@@ -1,4 +1,4 @@
-# 🚀 SBIR Skill - AI 驅動的 SBIR 申請神器
+# 🚀 SBIR editer - AI 驅動的 SBIR 申請神器
 
 <div align="center">
 
@@ -36,45 +36,6 @@
 **技術架構**：Cloudflare Workers + D1 + R2 + Vectorize + AI + Queues  
 **完整部署文件**：👉 [SAAS.md](SAAS.md)
 
----
-
-## 🆕 2026 年 2 月更新
-
-### 📍 全台 22 縣市地方型 SBIR 2026 資料大更新
-
-最新調查截至 **2026-02-21**，全台縣市公告狀態如下：
-
-| 狀態 | 縣市 |
-|------|------|
-| ✅ **已公告/可申請 (1)** | 台北市 SITI（隨到隨審） |
-| 📋 **委託案籌備中 (4)** | 基隆市（1/1 決標）、宜蘭縣（2/13 決標）、花蓮縣（招標中）、台南市（招標中） |
-| 📅 **待公告 (17)** | 所有其他縣市皆尚未發布 115 年度正式公告（包含桃園、新北、新竹縣市、台中、彰化、高雄等），往年多集中於 4-6 月 |
-
-更多詳細資訊：[地方型 SBIR 追蹤表](references/local_sbir_2026_tracker.md)
-
-### 🛠️ MCP Server 代碼修復（14 項）
-
-本次更新修復了幾個重要問題，建議所有 MCP Server 用戶更新：
-
-- 🔴 **[Critical] ROI 工具路由修正**：`calculate_roi` / `validate_roi` 之前因路由設定問題無法正常呼叫，現已修復
-- 🟡 **搜尋快取啟用**：修復快取未寫回的問題，搜尋結果現在會正確快取，重複查詢回應更快
-- 🟡 **計畫書檢核大小寫 bug**：`check_proposal` 現在正確進行不區分大小寫的完整度檢查
-- 🟡 **LRU 快取效能優化**：改用 `OrderedDict` 實現 O(1) 操作（原本為 O(n)）
-- 🟢 **雙向同義詞擴展**：搜尋「預算」也能自動展開到「補助」「經費」（之前只能單向展開）
-- 🟢 **Word 匯出路徑跨平台修復**：不再硬編碼 `~/Documents`，改為自動偵測桌面/文件目錄
-- 其他安全性改善（路徑穿越防護、錯誤處理、imports 整理）
-
----
-
-
-## 💡 為什麼需要 SBIR Skill？
-
-### 傳統方式的痛點
-
-- ❌ **耗時 2-3 個月**撰寫計畫書
-- ❌ **到處找資料**，不知道從何開始
-- ❌ **格式不確定**，擔心遺漏重點
-- ❌ **成功率低**，投入大量時間卻失敗
 
 ### 使用 SBIR Skill 後
 
@@ -88,40 +49,9 @@
 
 ---
 
-## 🎯 一鍵安裝
-
-**完全不懂電腦？沒關係！** 只要 3 個步驟：
-
-### Mac 用戶
-
-```bash
-# 1. 下載專案
-cd ~/Documents && git clone https://github.com/backtrue/sbir-grants.git && cd sbir-grants
-
-# 2. 執行安裝（自動配置所有東西）
-bash install-mac.sh
-
-# 3. 重啟 Claude Desktop，完成！
-```
-
-### Windows 用戶
-
-1. [下載 ZIP](https://github.com/backtrue/sbir-grants/archive/refs/heads/main.zip)
-2. 解壓縮到「文件」資料夾
-3. 雙擊 `install-windows.bat`
-4. 重啟 Claude Desktop，完成！
-
-### 不會用終端機？
-
-👉 看[完整圖文教學](INSTALLATION.md)（超級詳細，一步步教您）
-
----
-
 ## ✨ 核心功能
 
-### 🚀 v2.0 搜尋引擎大升級 (New!)
-
-我們剛剛引入了商業級的搜尋技術，大幅提升搜尋體驗：
+### 🚀 v2.0 搜尋
 
 | 功能 | 說明 | 技術亮點 |
 |------|------|----------|
@@ -259,69 +189,15 @@ Claude：[呼叫 MCP Server]
 
 ## 🎯 完整使用流程
 
-### 步驟 1：確認資格（10 分鐘）
+### 步驟 1：確認資格
 
-```
-您：我的公司實收資本額 5000 萬，員工 50 人，可以申請 SBIR 嗎？
+### 步驟 2：驗證構想
 
-Claude：[自動檢查資格]
-       ✅ 實收資本額 < 1 億（符合）
-       ✅ 員工數 < 200 人（符合）
-       [提供完整資格說明]
-```
-
----
-
-### 步驟 2：驗證構想（1 小時）
-
-```
-您：我想做 AI 客服系統給中小企業用，幫我用 1 小時構想驗證的方法評估
-
-Claude：[載入 1hour_idea_validation.md]
-       [引導您完成 4 個部分]
-       - 創新點驗證
-       - 客戶驗證
-       - 可行性檢查
-       - 市場規模估算
-       [給出評分和建議]
-```
-
----
-
-### 步驟 3：生成計畫書（30-45 分鐘）
-
-```
-您：開始生成 Phase 1 計畫書
-
-Claude：[啟動互動式生成器]
-       [25 個問題]
-       [自動保存進度]
-       [生成完整計畫書]
-```
-
----
+### 步驟 3：生成計畫書
 
 ### 步驟 4：品質檢查
 
-```
-您：幫我檢查 Phase 1 計畫書是否完整
-
-Claude：[使用 writing_checklist_phase1.md]
-       [逐項檢查]
-       [指出需要補充的地方]
-```
-
----
-
 ### 步驟 5：送件
-
-```
-您：送件前要準備哪些文件？
-
-Claude：[使用 submission_checklist.md]
-       [列出所有必要文件]
-       [提供送件注意事項]
-```
 
 ---
 
@@ -331,26 +207,9 @@ Claude：[使用 submission_checklist.md]
 
 - 🚀 [第一次使用](FIRST_TIME_USE.md) - 4 個範例問題
 - 📖 [完整使用說明](HOW_TO_USE.md) - 詳細功能介紹
-- ✅ [確認安裝成功](VERIFICATION.md) - 測試方法
-
-### 新手指南
-
-- 📚 [SBIR 新手入門](GETTING_STARTED.md) - 從零開始
-- ⚡ [10 分鐘資格檢查](quick_start/10min_eligibility_check.md)
-- 💡 [1 小時構想驗證](quick_start/1hour_idea_validation.md)
-- 🚀 [1 週計畫書衝刺](quick_start/1week_proposal_sprint.md)
-
-### 進階資源
-
-- 📝 [方法論系列](references/) - 6 個完整框架
-- ❓ [FAQ 大全](FAQ.md) - 81 個常見問題
-- 📊 [案例研究](examples/case_studies/) - 成功 + 失敗案例
-- 📋 [範本庫](templates/) - Phase 1/2 範本
-
----
 
 
-## 📊 專案統計
+## 📊 專案
 
 | 指標 | 數量 |
 |------|------|
@@ -370,34 +229,6 @@ Claude：[使用 submission_checklist.md]
   ✅ FAQ    ✅ 技巧    ✅ 簡報    ✅ 指南    ✅ 範本
 ```
 
----
-
-## 🔄 更新知識庫
-
-### 方法一：在 Claude 中直接說（推薦！）
-
-安裝後，只要在 Claude Desktop 中說：
-
-```
-請更新 SBIR 知識庫
-```
-
-Claude 會自動從 GitHub 拉取最新版本！
-
-### 方法二：手動更新
-
-```bash
-cd sbir-grants && git pull
-```
-
-> ⚠️ 如果您是下載 ZIP 的用戶，需要重新下載才能獲得更新
-
----
-
-## 🛠️ 技術亮點
-
-### 智能 MCP Server
-
 - 🔍 **自動知識庫搜尋**：關鍵字匹配 + 類別篩選
 - 📖 **文件自動讀取**：安全檢查 + 格式化輸出
 - 📊 **混合式數據查詢**：API + 網頁搜尋 + 本地數據
@@ -415,42 +246,3 @@ cd sbir-grants && git pull
 - 🚀 **一鍵安裝腳本**：自動檢測 + 自動配置
 - 📖 **超簡單文件**：國小程度語言
 - ✅ **完整驗證**：確保安裝成功
-
----
-
-## 🤝 貢獻
-
-歡迎貢獻！請查看 [CONTRIBUTING.md](CONTRIBUTING.md)
-
----
-
-## 📄 授權
-
-MIT License - 詳見 [LICENSE](LICENSE)
-
----
-
-## 🙏 致謝
-
-感謝所有為台灣中小企業創新努力的人們。
-
----
-
-<div align="center">
-
-## 🚀 開始使用 SBIR Skill
-
-**讓 AI 協助您成功申請 SBIR 補助**
-
-[⬇️ 立即下載](https://github.com/backtrue/sbir-grants/archive/refs/heads/main.zip) • [📖 查看文件](GETTING_STARTED.md) • [💬 問題回報](https://github.com/backtrue/sbir-grants/issues)
-
----
-
-**⭐ 如果這個專案對您有幫助，請給我們一個 Star！**
-
-Made with ❤️ for Taiwan SMEs
-
-</div>
-
-## 📚 See [Main Project README](../../README.md) for Full Features
-All advanced AI features (AI Draft Auto-Edit, Web Search, Quality Radar) have been reverse-ported from this Skill into the SaaS platform.
